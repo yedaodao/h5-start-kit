@@ -8,9 +8,14 @@ var $ = lib.$,
     $(function () {
         var mySwiper = new Swiper('.swiper-container', {
             direction: 'vertical',
-            loop: true,
-            // 如果需要分页器
-            pagination: '.swiper-pagination'
+            loop: false,
+            // If pagination is needed
+            pagination: '.swiper-pagination',
+            effect: 'coverflow',
+            onSlideChangeEnd: function (swiper) {
+                var $el = $(swiper.slides[swiper.activeIndex]);
+                console.log($el.attr('id'));
+            }
         })
     });
 }(window));
