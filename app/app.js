@@ -1,4 +1,5 @@
-var lib = require('../lib');
+var lib = require('../lib'),
+    PageManager = require('./modules/core/PageManager');
 
 var $ = lib.$,
     Swiper = lib.Swiper;
@@ -12,10 +13,25 @@ var $ = lib.$,
             // If pagination is needed
             pagination: '.swiper-pagination',
             effect: 'coverflow',
+            onInit: function (swiper) {
+                loadPageBySwiper(swiper);
+            },
             onSlideChangeEnd: function (swiper) {
-                var $el = $(swiper.slides[swiper.activeIndex]);
-                console.log($el.attr('id'));
+                loadPageBySwiper(swiper);
+                inactivePrevPage(swiper);
             }
-        })
+        });
+
+        function loadPageBySwiper(swiper) {
+            var $el = $(swiper.slides[swiper.activeIndex]),
+                id = $el.attr('id');
+            PageManager.renderPage(id, $el);
+        }
+
+        function inactivePrevPage(swiper) {
+            var $el = $(swiper.slides[swiper.previousIndex]),
+                id = $el.attr('id');
+            PageManager.inactivePage(id);
+        }
     });
 }(window));

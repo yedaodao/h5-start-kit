@@ -50,7 +50,7 @@ gulp.task('dev', gulpSequence('clean', ['webpack', 'less', 'watch']));
 
 gulp.task('connect', function () {
     connect.server({
-        port: 8088,
+        port: 8080,
         livereload: true
     });
 });
@@ -63,10 +63,10 @@ gulp.task('watch', ['connect'], function () {
 });
 
 gulp.task('seq-1', function (cb) {
-    gulpSequence('webpack-dev', 'reload')(cb);
+    gulpSequence('webpack', 'reload')(cb);
 });
 gulp.task('seq-2', function (cb) {
-    gulpSequence('less-dev', 'reload')(cb);
+    gulpSequence('less', 'reload')(cb);
 });
 
 gulp.task('clean', function () {

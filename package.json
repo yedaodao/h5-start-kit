@@ -4,6 +4,7 @@
   "description": "A kit for development of h5 ads. Includes zepto swiper greenback and so on.",
   "main": "index.js",
   "dependencies": {
+    "gsap": "^1.18.2",
     "swiper": "^3.3.1",
     "zepto": "^1.0.1"
   },
